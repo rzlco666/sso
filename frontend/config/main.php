@@ -5,7 +5,9 @@ $params = array_merge(
     require __DIR__ . '/params.php',
     require __DIR__ . '/params-local.php'
 );
-use \yii\web\Request;
+
+use yii\web\Request;
+
 $baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
 return [
     'id' => 'app-frontend',
@@ -19,7 +21,7 @@ return [
         ],
         'request' => [
             'class' => 'common\components\Request',
-            'web'=> '/frontend/web',
+            'web' => '/frontend/web',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -49,6 +51,12 @@ return [
             ],
         ],
 
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+        ]
     ],
     'params' => $params,
 ];

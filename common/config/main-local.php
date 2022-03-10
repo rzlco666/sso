@@ -17,5 +17,8 @@ return [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\PhpManager'
+        ],
     ],
 ];
