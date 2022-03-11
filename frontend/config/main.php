@@ -50,7 +50,12 @@ return [
             'rules' => [
             ],
         ],
-
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => '/sso/frontend/web',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
