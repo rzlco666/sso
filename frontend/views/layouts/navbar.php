@@ -41,13 +41,13 @@ use yii\helpers\Url;
             </ul>
             <?php if (Yii::$app->user->isGuest): ?>
             <div class="ms-auto">
-                <?= Html::a('Sign In', ['/site/login'], ['class' => 'btn bg-gradiant']) ?>
+                <?= Html::a('<i class="uil uil-signin"></i> Sign In', ['/site/login'], ['class' => 'btn bg-gradiant']) ?>
             </div>
             <?php else: ?>
             <div class="ms-auto">
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?= Yii::$app->user->identity->username ?>
+                        <i class="uil uil-user"></i> <?= Yii::$app->user->identity->username ?>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <?= Html::beginForm(['/site/logout'], 'post') ?>
