@@ -5,20 +5,20 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "mahasiswa".
+ * This is the model class for table "dosen".
  *
  * @property int $id
- * @property int $nim
+ * @property int $nidn
  * @property string $tanggal_lahir
  */
-class Mahasiswa extends \yii\db\ActiveRecord
+class Dosen extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'mahasiswa';
+        return 'dosen';
     }
 
     /**
@@ -27,8 +27,8 @@ class Mahasiswa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nim', 'tanggal_lahir'], 'required'],
-            [['nim'], 'integer'],
+            [['nidn', 'tanggal_lahir'], 'required'],
+            [['nidn'], 'integer'],
             [['tanggal_lahir'], 'safe'],
         ];
     }
@@ -40,7 +40,7 @@ class Mahasiswa extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nim' => 'NIM',
+            'nidn' => 'NIDN',
             'tanggal_lahir' => 'Tanggal Lahir',
         ];
     }
