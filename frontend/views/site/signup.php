@@ -13,7 +13,11 @@ use yii\helpers\Url;
 
 $this->title = 'Sign Up SSO';
 ?>
-
+<style>
+    ::-webkit-calendar-picker-indicator{
+        background-image: url(https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png);
+    }
+</style>
 <div class="row">
     <div class="col-lg-8">
         <div class="fxt-column-wrap justify-content-between">
@@ -77,15 +81,14 @@ $this->title = 'Sign Up SSO';
                         ->label(false)
                         ->textInput(['placeholder' => $model->getAttributeLabel('email')]) ?>
                 </div>
-                <!--<div class="form-group">
-
-                    <?/*= $form->field($model, 'lahir', [
+                <div class="form-group">
+                    <?= $form->field($model, 'lahir', [
                         'options' => ['class' => 'form-group has-feedback'],
                         'wrapperOptions' => ['class' => 'input-group mb-3']
                     ])
                         ->label(false)
-                        ->textInput(['placeholder' => 'Tanggal Lahir', 'type' => 'date']) */?>
-                </div>-->
+                        ->textInput(['placeholder' => 'Tanggal Lahir', 'type' => 'date']) ?>
+                </div>
                 <div class="form-group">
                     <?= $form->field($model, 'password', [
                         'options' => ['class' => 'form-group has-feedback', 'id' => 'password'],
@@ -107,7 +110,8 @@ $this->title = 'Sign Up SSO';
                                 '3' => 'Staff',
                             ],
                             [
-                                'prompt' => 'Pilih Status'
+                                'prompt' => 'Pilih Status',
+                                'class' => 'form-control',
                             ]
                         ) ?>
                 </div>
