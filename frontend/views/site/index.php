@@ -19,8 +19,7 @@ $this->title = 'SSO';
             </div>
 
             <div class="col-lg-5 offset-md-1 ">
-                <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/homebg1.svg') ?>"
-                     style="max-width:90%; width:90%;" alt="" class="img-fluid">
+                <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/home-bg.png') ?>" alt="" class="img-fluid">
             </div>
         </div>
         <!-- end row -->

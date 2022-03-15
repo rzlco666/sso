@@ -19,7 +19,7 @@ $this->title = 'Sign In SSO';
             <div class="fxt-animated-img">
                 <div class="fxt-transformX-L-50 fxt-transition-delay-10">
                     <img alt="Animated Image"
-                         src="<?= Yii::$app->urlManagerFrontend->createUrl('/auth/img/figure/bg34-1.png') ?>">
+                         src="<?= Yii::$app->urlManagerFrontend->createUrl('/auth/img/figure/bg-login.png') ?>">
                 </div>
             </div>
             <div class="fxt-transformX-L-50 fxt-transition-delay-3">
