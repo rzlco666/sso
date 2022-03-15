@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Dosen;
 use common\models\Mahasiswa;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -158,16 +159,39 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
+            //input date html to mysql date
+            $tgl = date('Y-m-d', strtotime($model->lahir));
             // if role = 1
             if ($model->role == 1) {
-                // if nik already exists
-                if (Mahasiswa::find()->where(['nik' => $model->username])->exists()) {
-                    if ($model->signup()) {
-                        Yii::$app->session->setFlash('success', 'Terima kasih telah mendaftar. Silahkan check email untuk proses verifikasi.');
-                        return $this->actionLogin();
+                // if nim anda already exists
+                if (Mahasiswa::find()->where(['nim' => $model->username])->exists()) {
+                    if(Mahasiswa::find()->where(['nim' => $model->username])->andWhere(['tanggal_lahir' => $tgl])->exists()) {
+                        if ($model->signup()) {
+                            Yii::$app->session->setFlash('success', 'Terima kasih telah mendaftar. Silahkan check email untuk proses verifikasi.');
+                            return $this->actionLogin();
+                        }
+                    }else{
+                        Yii::$app->session->setFlash('error', 'Tanggal lahir salah.');
+                        return $this->refresh();
                     }
                 }else{
-                    Yii::$app->session->setFlash('error', 'NIK tidak ditemukan.');
+                    Yii::$app->session->setFlash('error', 'NIM tidak ditemukan.');
+                    return $this->refresh();
+                }
+            }elseif ($model->role == 2) {
+                // if nidn anda already exists
+                if (Dosen::find()->where(['nidn' => $model->username])->exists()) {
+                    if(Dosen::find()->where(['nidn' => $model->username])->andWhere(['tanggal_lahir' => $tgl])->exists()) {
+                        if ($model->signup()) {
+                            Yii::$app->session->setFlash('success', 'Terima kasih telah mendaftar. Silahkan check email untuk proses verifikasi.');
+                            return $this->actionLogin();
+                        }
+                    }else{
+                        Yii::$app->session->setFlash('error', 'Tanggal lahir salah.');
+                        return $this->refresh();
+                    }
+                }else{
+                    Yii::$app->session->setFlash('error', 'NIDN tidak ditemukan.');
                     return $this->refresh();
                 }
             }else{
