@@ -47,6 +47,20 @@ $this->title = 'Sign In SSO';
             <div class="fxt-form">
                 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                 <div class="form-group">
+                    <?php if (Yii::$app->session->hasFlash('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Berhasil!</strong> <?= Yii::$app->session->getFlash('success') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (Yii::$app->session->hasFlash('error')): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Gagal!</strong> <?= Yii::$app->session->getFlash('error') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="form-group">
                     <?= $form->field($model, 'username', [
                         'options' => ['class' => 'form-group has-feedback'],
                         'wrapperOptions' => ['class' => 'input-group mb-3']

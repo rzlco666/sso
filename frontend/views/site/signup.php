@@ -6,6 +6,7 @@
 /** @var SignupForm $model */
 
 use frontend\models\SignupForm;
+use kartik\date\DatePicker;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Url;
@@ -24,8 +25,8 @@ $this->title = 'Sign Up SSO';
             </div>
             <div class="fxt-transformX-L-50 fxt-transition-delay-3">
                 <a class="fxt-logo" href="<?= Url::home() ?>"><img alt="Logo"
-                                                                                src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/logo-dark.png') ?>"
-                                                                                style="max-width: 168px;"></a>
+                                                                   src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/logo-dark.png') ?>"
+                                                                   style="max-width: 168px;"></a>
             </div>
             <div class="fxt-transformX-L-50 fxt-transition-delay-5">
                 <div class="fxt-middle-content">
@@ -47,12 +48,26 @@ $this->title = 'Sign Up SSO';
             <div class="fxt-form">
                 <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
                 <div class="form-group">
+                    <?php if (Yii::$app->session->hasFlash('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Berhasil!</strong> <?= Yii::$app->session->getFlash('success') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (Yii::$app->session->hasFlash('error')): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Gagal!</strong> <?= Yii::$app->session->getFlash('error') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="form-group">
                     <?= $form->field($model, 'username', [
                         'options' => ['class' => 'form-group has-feedback', 'autofocus' => true],
                         'wrapperOptions' => ['class' => 'input-group mb-3']
                     ])
                         ->label(false)
-                        ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+                        ->textInput(['placeholder' => 'NIK/NIDN']) ?>
                 </div>
                 <div class="form-group">
                     <?= $form->field($model, 'email', [
@@ -62,6 +77,15 @@ $this->title = 'Sign Up SSO';
                         ->label(false)
                         ->textInput(['placeholder' => $model->getAttributeLabel('email')]) ?>
                 </div>
+                <!--<div class="form-group">
+
+                    <?/*= $form->field($model, 'lahir', [
+                        'options' => ['class' => 'form-group has-feedback'],
+                        'wrapperOptions' => ['class' => 'input-group mb-3']
+                    ])
+                        ->label(false)
+                        ->textInput(['placeholder' => 'Tanggal Lahir', 'type' => 'date']) */?>
+                </div>-->
                 <div class="form-group">
                     <?= $form->field($model, 'password', [
                         'options' => ['class' => 'form-group has-feedback', 'id' => 'password'],
@@ -71,10 +95,28 @@ $this->title = 'Sign Up SSO';
                         ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
                 </div>
                 <div class="form-group">
+                    <?= $form->field($model, 'role', [
+                        'options' => ['class' => 'form-group has-feedback dropdown'],
+                        'wrapperOptions' => ['class' => 'input-group mb-3']
+                    ])
+                        ->label(false)
+                        ->dropDownList(
+                            [
+                                '1' => 'Mahasiswa',
+                                '2' => 'Dosen',
+                                '3' => 'Staff',
+                            ],
+                            [
+                                'prompt' => 'Pilih Status'
+                            ]
+                        ) ?>
+                </div>
+                <div class="form-group">
                     <div class="fxt-checkbox-box">
                         <input id="checkbox1" type="checkbox">
                         <label for="checkbox1" class="ps-4 text-black">I agree with <a
-                                    class="terms-link" href="#">Terms</a> and <a class="terms-link" href="#">Privacy Policy</a></label>
+                                    class="terms-link" href="#">Terms</a> and <a class="terms-link" href="#">Privacy
+                                Policy</a></label>
                     </div>
                 </div>
                 <div class="form-group">
