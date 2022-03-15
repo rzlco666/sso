@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Mahasiswa;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -156,9 +157,23 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+        if ($model->load(Yii::$app->request->post())) {
+            // if role = 1
+            if ($model->role == 1) {
+                // if nik already exists
+                if (Mahasiswa::find()->where(['nik' => $model->username])->exists()) {
+                    if ($model->signup()) {
+                        Yii::$app->session->setFlash('success', 'Terima kasih telah mendaftar. Silahkan check email untuk proses verifikasi.');
+                        return $this->actionLogin();
+                    }
+                }else{
+                    Yii::$app->session->setFlash('error', 'NIK tidak ditemukan.');
+                    return $this->refresh();
+                }
+            }else{
+                Yii::$app->session->setFlash('error', 'Status tidak ditemukan.');
+                return $this->refresh();
+            }
         }
 
         $this->layout = '@frontend/views/layouts/main-auth.php';

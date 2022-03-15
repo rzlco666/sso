@@ -14,6 +14,8 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $role;
+    public $lahir;
 
 
     /**
@@ -25,17 +27,30 @@ class SignupForm extends Model
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            //['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'integer'],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
+            ['email', 'validateEmail'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+
+            ['role', 'required'],
         ];
+    }
+
+    public function validateEmail($attribute, $params, $validator)
+    {
+        $temp_obj = $this->$attribute;
+        $temp = "'$temp_obj'";
+        if (!str_contains($temp, 'itspku.ac.id')) {
+            $this->addError($attribute, 'Email harus menggunakan "@student.itspku.ac.id" atau "@itspku.ac.id".');
+        }
     }
 
     /**
