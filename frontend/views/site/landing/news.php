@@ -77,7 +77,7 @@ $feeds = simplexml_load_string(file_get_contents($url));
                                                 </div>
 
                                                 <div class="mt-3">
-                                                    <h5 class="fw-bold"><a class="text-black" style="text-decoration: none;" target="_blank" href="<?= $link ?>"><?= $title ?></a></h5>
+                                                    <h5 class="fw-bold"><a style="color: inherit; text-decoration: none;" target="_blank" href="<?= $link ?>"><?= $title ?></a></h5>
                                                     <a href="<?= $link ?>" target="_blank" class="btn btn-sm bg-gradiant mt-2">Selengkapnya
                                                         <i class="mdi mdi-arrow-right"></i></a>
                                                 </div>

@@ -81,7 +81,7 @@
             <div class="col-lg-6">
                 <p class="mb-0 text-center text-muted">©
                     <script>document.write(new Date().getFullYear())</script>
-                    . Develop with <i
+                    Develop with <i
                             class="mdi mdi-heart text-danger"></i> by <a
                             href="https://itspku.ac.id" target="_blank" class="text-muted">IT ITS PKU Muhammadiyah
                         Surakarta.</a>

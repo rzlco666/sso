@@ -111,8 +111,9 @@ $this->title = 'SSO';
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="title text-center mb-5">
-                    <h6 class="mb-0 fw-bold text-primary">AppTech Features</h6>
-                    <h2 class="f-40">Features for our app </h2>
+                    <h6 class="mb-0 fw-bold text-primary">App Features <i
+                                class="mdi mdi-apps"></i></h6>
+                    <h2 class="f-40">Satu Untuk Semua</h2>
                     <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eos
                         inventore omnis aliquid rerum alias molestias.</p>
                 </div>
@@ -127,7 +128,7 @@ $this->title = 'SSO';
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                aria-selected="true">Top Features
+                                aria-selected="true">App List
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -294,65 +295,7 @@ $this->title = 'SSO';
 
 <?= $this->render('landing/news') ?>
 
-<!-- slider section -->
-<section class="section app-slider" id="app">
-    <!-- start container -->
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="title text-center mb-5">
-                    <h6 class="mb-0 fw-bold text-primary">App Screen!</h6>
-                    <h2 class="f-40">Show our App Screenshots!</h2>
-                    <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eos <br>
-                        inventore omnis aliquid rerum alias molestias.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="swiper-container">
-                    <div class="fream-phone ">
-                        <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/testi/phone-fream.png') ?>"
-                             alt="" class="img-fluid">
-                    </div>
-
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide border-radius">
-                            <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/testi/ss/s-1.png') ?>"
-                                 alt="" class="img-fluid">
-                        </div>
-                        <div class="swiper-slide border-radius">
-                            <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/testi/ss/s-2.png') ?>"
-                                 alt="" class="img-fluid">
-                        </div>
-                        <div class="swiper-slide border-radius">
-                            <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/testi/ss/s-3.png') ?>"
-                                 alt="" class="img-fluid">
-                        </div>
-                        <div class="swiper-slide border-radius">
-                            <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/testi/ss/s-4.png') ?>"
-                                 alt="" class="img-fluid">
-                        </div>
-                        <div class="swiper-slide border-radius">
-                            <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/testi/ss/s-5.png') ?>"
-                                 alt="" class="img-fluid">
-                        </div>
-                        <div class="swiper-slide border-radius">
-                            <img src="<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/testi/ss/s-6.png') ?>"
-                                 alt="" class="img-fluid">
-                        </div>
-                    </div>
-
-                    <!-- navigation buttons -->
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </div>
-        <!-- end container -->
-    </div>
-</section>
-<!-- end section -->
+<?= $this->render('landing/gallery') ?>
 
 <!-- cta section -->
 <section class="section cta" id="cta">
