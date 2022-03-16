@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Dosen;
 use common\models\Mahasiswa;
+use common\models\Staff;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -182,6 +183,22 @@ class SiteController extends Controller
                 // if nidn anda already exists
                 if (Dosen::find()->where(['nidn' => $model->username])->exists()) {
                     if(Dosen::find()->where(['nidn' => $model->username])->andWhere(['tanggal_lahir' => $tgl])->exists()) {
+                        if ($model->signup()) {
+                            Yii::$app->session->setFlash('success', 'Terima kasih telah mendaftar. Silahkan check email untuk proses verifikasi.');
+                            return $this->actionLogin();
+                        }
+                    }else{
+                        Yii::$app->session->setFlash('error', 'Tanggal lahir salah.');
+                        return $this->refresh();
+                    }
+                }else{
+                    Yii::$app->session->setFlash('error', 'NIDN tidak ditemukan.');
+                    return $this->refresh();
+                }
+            }elseif ($model->role == 3) {
+                // if nidn anda already exists
+                if (Staff::find()->where(['nik' => $model->username])->exists()) {
+                    if(Staff::find()->where(['nik' => $model->username])->andWhere(['tanggal_lahir' => $tgl])->exists()) {
                         if ($model->signup()) {
                             Yii::$app->session->setFlash('success', 'Terima kasih telah mendaftar. Silahkan check email untuk proses verifikasi.');
                             return $this->actionLogin();
