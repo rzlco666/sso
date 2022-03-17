@@ -27,16 +27,10 @@ use yii\helpers\Url;
                     <a class="nav-link" href="#home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#service">Services</a>
+                    <a class="nav-link" href="#features">App List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#features">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#app">Application</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
+                    <a class="nav-link" href="#berita">Berita</a>
                 </li>
             </ul>
             <?php if (Yii::$app->user->isGuest): ?>

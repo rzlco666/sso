@@ -295,6 +295,8 @@ $this->title = 'SSO';
 
 <?= $this->render('landing/news') ?>
 
+<?= $this->render('landing/wifi') ?>
+
 <?= $this->render('landing/gallery') ?>
 
 <!-- cta section -->

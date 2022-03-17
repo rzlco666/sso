@@ -4,7 +4,7 @@ $feeds = simplexml_load_string(file_get_contents($url));
 ?>
 
 <!-- start testimonial -->
-<section class="section bg-light testimonial" id="testimonial">
+<section class="section bg-light testimonial" id="berita">
     <!-- start container -->
     <div class="container">
         <div class="row align-items-center">
