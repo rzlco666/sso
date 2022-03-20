@@ -22,39 +22,54 @@ use yii\helpers\Url;
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav ms-auto" id="navbar-navlist">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#features">App List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#berita">Berita</a>
-                </li>
-            </ul>
             <?php if (Yii::$app->user->isGuest): ?>
-            <div class="ms-auto">
-                <?= Html::a('<i class="uil uil-signin"></i> Sign In', ['/site/login'], ['class' => 'btn bg-gradiant']) ?>
-            </div>
-            <?php else: ?>
-            <div class="ms-auto">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="uil uil-user"></i> <?= Yii::$app->user->identity->username ?>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <?= Html::beginForm(['/site/logout'], 'post') ?>
-                        <li>
-                            <?= Html::submitButton(
-                                'Logout',
-                                ['class' => 'dropdown-item']
-                            ) ?>
-                        </li>
-                        <?= Html::endForm() ?>
-                    </ul>
+                <ul class="navbar-nav ms-auto" id="navbar-navlist">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">App List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#berita">Berita</a>
+                    </li>
+                </ul>
+                <div class="ms-auto">
+                    <?= Html::a('<i class="uil uil-signin"></i> Sign In', ['/site/login'], ['class' => 'btn bg-gradiant']) ?>
                 </div>
-            </div>
+            <?php else: ?>
+                <ul class="navbar-nav ms-auto" id="navbar-navlist">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['/#home']) ?>">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['/#features']) ?>">App List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['/#berita']) ?>">Berita</a>
+                    </li>
+                    <li class="nav-item <?php if ($this->title === 'Wi-Fi'): echo 'active'; endif ?>">
+                        <a class="nav-link" href="<?= Url::to(['/site/wifi#wifi']) ?>">Wi-Fi</a>
+                    </li>
+                </ul>
+                <div class="ms-auto">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="uil uil-user"></i> <?= Yii::$app->user->identity->username ?>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <?= Html::beginForm(['/site/logout'], 'post') ?>
+                            <li>
+                                <?= Html::submitButton(
+                                    'Logout',
+                                    ['class' => 'dropdown-item']
+                                ) ?>
+                            </li>
+                            <?= Html::endForm() ?>
+                        </ul>
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
     </div>

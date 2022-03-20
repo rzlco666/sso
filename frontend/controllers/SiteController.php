@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Dosen;
 use common\models\Mahasiswa;
 use common\models\Staff;
+use common\models\Wifi;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -220,6 +221,53 @@ class SiteController extends Controller
         $this->layout = '@frontend/views/layouts/main-auth.php';
 
         return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionWifi()
+    {
+        $model = new Wifi();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post())) {
+
+                $getEmail = \Yii::$app->user->identity->email;
+                $genUser = strstr($getEmail, '@', true);
+
+                $getUser = \Yii::$app->user->identity->username;
+                $sliceUser = substr($getUser,  -3);
+                $randNum = random_int(10 ** (3 - 1), (10 ** 3) -1);
+                $genCode = $sliceUser.$randNum;
+
+                if (\Yii::$app->user->identity->role === 1) {
+                    $model->profile = '@mahasiswa';
+                } elseif (\Yii::$app->user->identity->role === 2) {
+                    $model->profile = '@dosen';
+                } elseif (\Yii::$app->user->identity->role === 3) {
+                    $model->profile = '@staff';
+                } else {
+                    \Yii::$app->session->setFlash('error', 'Anda tidak memiliki hak akses untuk menambahkan data!');
+                }
+
+                $model->username = $genUser;
+                $model->password = $genCode;
+                $model->user_id = \Yii::$app->user->identity->id;
+
+                if ($model->save()){
+                    //set flash message html
+                    \Yii::$app->session->setFlash('success', 'Selamat akun <b>Wi-Fi</b> berhasil dibuat.');
+                }else{
+                    \Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat.');
+                }
+
+                return $this->redirect(['site/wifi#wifi']);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('wifi/index', [
             'model' => $model,
         ]);
     }

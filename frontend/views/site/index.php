@@ -15,7 +15,7 @@ $this->title = 'SSO';
                      style="max-width: 50px;" alt="" class="img-fluid mb-4 smallphone-image">
                 <h1 class="display-5 fw-bold">ITS PKU Muhammadiyah Surakarta</h1>
                 <p class="mt-4 text-muted">Manajemen Profile Single Sign On ITS PKU Muhammadiyah Surakarta</p>
-                <button class="btn bg-gradiant mt-4">Read More</button>
+                <a href="#features" class="btn bg-gradiant mt-4">Explore</a>
             </div>
 
             <div class="col-lg-5 offset-md-1 ">
@@ -294,8 +294,6 @@ $this->title = 'SSO';
 <!-- end features -->
 
 <?= $this->render('landing/news') ?>
-
-<?= $this->render('landing/wifi') ?>
 
 <?= $this->render('landing/gallery') ?>
 

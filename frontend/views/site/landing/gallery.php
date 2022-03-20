@@ -1,5 +1,5 @@
 <!-- slider section -->
-<section class="section app-slider bg-light" id="app">
+<section class="section app-slider" id="app">
     <!-- start container -->
     <div class="container">
         <div class="row justify-content-center">
