@@ -49,7 +49,7 @@ use yii\helpers\Url;
                         <a class="nav-link" href="<?= Url::to(['/#berita']) ?>">Berita</a>
                     </li>
                     <li class="nav-item <?php if ($this->title === 'Wi-Fi'): echo 'active'; endif ?>">
-                        <a class="nav-link" href="<?= Url::to(['/site/wifi#wifi']) ?>">Wi-Fi</a>
+                        <a class="nav-link" href="<?= Url::to(['/wifi#wifi']) ?>">Wi-Fi</a>
                     </li>
                 </ul>
                 <div class="ms-auto">

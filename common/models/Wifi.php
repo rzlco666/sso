@@ -11,7 +11,12 @@ use Yii;
  * @property string $username
  * @property string $password
  * @property string $profile
+ * @property int $status
  * @property int $user_id
+ * @property int $created_by
+ * @property string $created_at
+ * @property int $updated_by
+ * @property string $updated_at
  *
  * @property User $user
  */
@@ -31,8 +36,8 @@ class Wifi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'profile', 'user_id'], 'required'],
-            [['user_id'], 'integer'],
+            [['username', 'password', 'profile', 'status', 'user_id'], 'required'],
+            [['status', 'user_id'], 'integer'],
             [['username'], 'string', 'max' => 100],
             [['password'], 'string', 'max' => 10],
             [['profile'], 'string', 'max' => 20],
@@ -50,6 +55,7 @@ class Wifi extends \yii\db\ActiveRecord
             'username' => 'Username',
             'password' => 'Password',
             'profile' => 'Profile',
+            'status' => 'Status',
             'user_id' => 'User ID',
         ];
     }

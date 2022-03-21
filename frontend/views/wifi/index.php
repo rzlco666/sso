@@ -75,7 +75,7 @@ $this->title = 'Wi-Fi';
             <div class="col-lg-6">
                 <div class="title text-center mb-5">
                     <h6 class="mb-0 fw-bold text-primary">Wi-Fi <i
-                                class="mdi mdi-wifi-settings"></i></h6>
+                            class="mdi mdi-wifi-settings"></i></h6>
                     <h2 class="f-40">Akun Wi-Fi</h2>
                     <p class="text-muted">Generate akun Wi-Fi untuk kamu gunakan dilingkungan ITS PKU Muhammadiyah
                         Surakarta.</p>
@@ -158,7 +158,7 @@ $this->title = 'Wi-Fi';
                             </button>-->
                             <button type="button" class="btn btn-sm btn-primary mt-3" data-bs-toggle="modal"
                                     data-bs-target="#detailWiFi"><i
-                                        class="mdi mdi-information-variant me-2"></i>Detail Akun
+                                    class="mdi mdi-information-variant me-2"></i>Detail Akun
                             </button>
 
                             <!-- Modal -->
@@ -221,7 +221,7 @@ $this->title = 'Wi-Fi';
                             </div>
 
                         <?php else : ?>
-                            <div class="badge bg-primary fw-normal f-14">Belum Dibuat</div>
+                            <div class="badge bg-danger fw-normal f-14">Belum Dibuat</div>
                             <div class="price-tag mt-2">
                                 <h6 class="mb-0 f-20">
                                     <i class="mdi mdi-account"></i>
@@ -244,22 +244,7 @@ $this->title = 'Wi-Fi';
                                 </span>
                                 </h6>
                             </div>
-                            <p class="text-muted mb-0 mt-2"><span class="text-danger">*</span> Klik teks untuk menyalin
-                            </p>
-                            <p class="text-muted mb-0">Hubungkan dengan Wi-Fi
-                                <b>
-                                    <?php
-                                    if (Yii::$app->user->identity->role === 1) {
-                                        echo '@mahasiswa';
-                                    } elseif (Yii::$app->user->identity->role === 2) {
-                                        echo '@dosen';
-                                    } elseif (Yii::$app->user->identity->role === 3) {
-                                        echo '@staff';
-                                    } else {
-                                        echo '-';
-                                    }
-                                    ?>
-                                </b>.
+                            <p class="text-muted mb-0 mt-2"><span class="text-danger">*</span> Klik buat akun untuk generate akun baru.
                             </p>
 
                             <?php
