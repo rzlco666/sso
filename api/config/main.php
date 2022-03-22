@@ -22,7 +22,7 @@ return [
         'request' => [
             'csrfParam' => '_csrf-api',
             'parsers' => [
-                'application/json' => 'yiiwebJsonParser',
+                'application/json' => 'yii\web\JsonParser',
             ]
         ],
         'user' => [
@@ -51,10 +51,7 @@ return [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
-                /*[
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => 'dosen',
-                ],*/
+                //['class' => 'yii\rest\UrlRule', 'controller' => 'dosen'],
                 'GET <controller:\w+>s' => '<controller>/index',
                 'GET <controller:\w+>s/<uid:\d+>' => '<controller>/view',
                 'POST <controller:\w+>s' => '<controller>/create',
