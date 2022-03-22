@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\RouterosAPI;
 use common\models\Wifi;
 use yii\web\Controller;
 
@@ -53,10 +54,16 @@ class WifiController extends Controller
 
                 if (\Yii::$app->user->identity->role === 1) {
                     $model->profile = '@mahasiswa';
+                    $SERVER = '@mahasiswa Hotspot'; //mikrotik server
+                    $PROFILE = '@mahasiswa'; //mikrotik profile
                 } elseif (\Yii::$app->user->identity->role === 2) {
                     $model->profile = '@dosen';
+                    $SERVER = '@dosen Hotspot'; //mikrotik server
+                    $PROFILE = '@dosen'; //mikrotik profile
                 } elseif (\Yii::$app->user->identity->role === 3) {
                     $model->profile = '@staff';
+                    $SERVER = '@staff Hotspot'; //mikrotik server
+                    $PROFILE = '@staff'; //mikrotik profile
                 } else {
                     \Yii::$app->session->setFlash('error', 'Anda tidak memiliki hak akses untuk menambahkan data!');
                 }
@@ -70,11 +77,45 @@ class WifiController extends Controller
                 $model->updated_at = date('Y-m-d H:i:s');
                 $model->updated_by = \Yii::$app->user->identity->id;
 
-                if ($model->save()){
-                    //set flash message html
-                    \Yii::$app->session->setFlash('success', 'Selamat akun <b>Wi-Fi</b> berhasil dibuat.');
+                $API = new RouterosAPI();
+
+                if ($API->connect('202.91.8.130', 'Apisso', '3%rvR:RnW}:+2fGu'))
+                {
+                    // Data user dan password hotspot
+                    $user = array(1 => array('name' => $genUser, 'password' => $genCode),
+                    );
+
+                    foreach($user as $tmp)
+                    {
+                        $username="=name=";
+                        $username.=$tmp['name'];
+
+                        $pass="=password=";
+                        $pass.=$tmp['password'];
+
+                        $server="=server=";
+                        $server.=$SERVER;
+
+                        $profile="=profile=";
+                        $profile.=$PROFILE;
+
+                        $API->write('/ip/hotspot/user/add',false);
+                        $API->write($username, false);
+                        $API->write($pass, false);
+                        $API->write($server, false);
+                        $API->write($profile);
+
+                        //if api write success
+                        if ($model->save()){
+                            //set flash message html
+                            \Yii::$app->session->setFlash('success', 'Selamat akun <b>Wi-Fi</b> berhasil dibuat.');
+                        }else{
+                            \Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat.');
+                        }
+                    }
+                    $API->disconnect();
                 }else{
-                    \Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat.');
+                    \Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat. Terjadi kesalahan pada server Mikrotik. Silahkan hubungi admin.');
                 }
 
                 return $this->redirect(['#wifi']);
@@ -86,5 +127,25 @@ class WifiController extends Controller
         return $this->render('index', [
             'model' => $model,
         ]);
+    }
+
+    public function actionTest()
+    {
+        $API = new RouterosAPI();
+        $API->debug = true;
+
+        if ($API->connect('202.91.8.130', 'Apisso', '3%rvR:RnW}:+2fGu')) {
+
+            $API->write('/interface/getall');
+
+            $READ = $API->read(false);
+            $ARRAY = $API->parseResponse($READ);
+
+            print_r($ARRAY);
+
+            $API->disconnect();
+
+        }
+
     }
 }
