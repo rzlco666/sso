@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\RouterosAPI;
 use common\models\Wifi;
+use Yii;
 use yii\web\Controller;
 
 /**
@@ -44,78 +45,71 @@ class WifiController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
 
-                $getEmail = \Yii::$app->user->identity->email;
+                $getEmail = Yii::$app->user->identity->email;
                 $genUser = strstr($getEmail, '@', true);
 
-                $getUser = \Yii::$app->user->identity->username;
-                $sliceUser = substr($getUser,  -3);
-                $randNum = random_int(10 ** (3 - 1), (10 ** 3) -1);
-                $genCode = $sliceUser.$randNum;
+                $getUser = Yii::$app->user->identity->username;
+                $sliceUser = substr($getUser, -3);
+                $randNum = random_int(10 ** (3 - 1), (10 ** 3) - 1);
+                $genCode = $sliceUser . $randNum;
 
-                if (\Yii::$app->user->identity->role === 1) {
+                if (Yii::$app->user->identity->role === 1) {
                     $model->profile = '@mahasiswa';
                     $SERVER = '@mahasiswa Hotspot'; //mikrotik server
                     $PROFILE = '@mahasiswa'; //mikrotik profile
-                } elseif (\Yii::$app->user->identity->role === 2) {
+                } elseif (Yii::$app->user->identity->role === 2) {
                     $model->profile = '@dosen';
                     $SERVER = '@dosen Hotspot'; //mikrotik server
                     $PROFILE = '@dosen'; //mikrotik profile
-                } elseif (\Yii::$app->user->identity->role === 3) {
+                } elseif (Yii::$app->user->identity->role === 3) {
                     $model->profile = '@staff';
                     $SERVER = '@staff Hotspot'; //mikrotik server
                     $PROFILE = '@staff'; //mikrotik profile
                 } else {
-                    \Yii::$app->session->setFlash('error', 'Anda tidak memiliki hak akses untuk menambahkan data!');
+                    Yii::$app->session->setFlash('error', 'Anda tidak memiliki hak akses untuk menambahkan data!');
                 }
 
                 $model->username = $genUser;
                 $model->password = $genCode;
                 $model->status = 1;
-                $model->user_id = \Yii::$app->user->identity->id;
+                $model->user_id = Yii::$app->user->identity->id;
                 $model->created_at = date('Y-m-d H:i:s');
-                $model->created_by = \Yii::$app->user->identity->id;
+                $model->created_by = Yii::$app->user->identity->id;
                 $model->updated_at = date('Y-m-d H:i:s');
-                $model->updated_by = \Yii::$app->user->identity->id;
+                $model->updated_by = Yii::$app->user->identity->id;
 
                 $API = new RouterosAPI();
 
-                if ($API->connect('202.91.8.130', 'Apisso', '3%rvR:RnW}:+2fGu'))
-                {
-                    // Data user dan password hotspot
-                    $user = array(1 => array('name' => $genUser, 'password' => $genCode),
-                    );
+                if ($API->connect('202.91.8.130', 'Apisso', '3%rvR:RnW}:+2fGu')) {
 
-                    foreach($user as $tmp)
-                    {
-                        $username="=name=";
-                        $username.=$tmp['name'];
+                    $username = "=name=";
+                    $username .= $genUser;
 
-                        $pass="=password=";
-                        $pass.=$tmp['password'];
+                    $pass = "=password=";
+                    $pass .= $genCode;
 
-                        $server="=server=";
-                        $server.=$SERVER;
+                    $server = "=server=";
+                    $server .= $SERVER;
 
-                        $profile="=profile=";
-                        $profile.=$PROFILE;
+                    $profile = "=profile=";
+                    $profile .= $PROFILE;
 
-                        $API->write('/ip/hotspot/user/add',false);
-                        $API->write($username, false);
-                        $API->write($pass, false);
-                        $API->write($server, false);
-                        $API->write($profile);
+                    $API->write('/ip/hotspot/user/add', false);
+                    $API->write($username, false);
+                    $API->write($pass, false);
+                    $API->write($server, false);
+                    $API->write($profile);
 
-                        //if api write success
-                        if ($model->save()){
-                            //set flash message html
-                            \Yii::$app->session->setFlash('success', 'Selamat akun <b>Wi-Fi</b> berhasil dibuat.');
-                        }else{
-                            \Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat.');
-                        }
+                    //if api write success
+                    if ($model->save()) {
+                        Yii::$app->session->setFlash('success', 'Selamat akun <b>Wi-Fi</b> berhasil dibuat.');
+                    } else {
+                        Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat.');
                     }
                     $API->disconnect();
-                }else{
-                    \Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat. Terjadi kesalahan pada server Mikrotik. Silahkan hubungi admin.');
+
+                } else {
+                    Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat. Terjadi kesalahan pada server Mikrotik. Silahkan hubungi admin.');
                 }
 
                 return $this->redirect(['#wifi']);
