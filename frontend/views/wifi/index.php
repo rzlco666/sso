@@ -42,7 +42,7 @@ $this->title = 'Wi-Fi';
 </style>
 
 <!-- home section -->
-<section class="home bg-light" id="home">
+<section class="home" id="home">
     <!-- start container -->
     <div class="container">
         <!-- start row -->
@@ -69,7 +69,7 @@ $this->title = 'Wi-Fi';
 <!-- end home section -->
 
 <!-- pricing section -->
-<section class="section pricing bg-light" id="wifi">
+<section class="section pricing" id="wifi">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">

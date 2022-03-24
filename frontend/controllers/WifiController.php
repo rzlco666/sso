@@ -101,13 +101,17 @@ class WifiController extends Controller
                     $API->write($profile);
 
                     //if api write success
-                    if ($model->save()) {
-                        Yii::$app->session->setFlash('success', 'Selamat akun <b>Wi-Fi</b> berhasil dibuat.');
+                    if ($API->read(false)) {
+                        if ($model->save()) {
+                            Yii::$app->session->setFlash('success', 'Selamat akun <b>Wi-Fi</b> berhasil dibuat.');
+                        } else {
+                            Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat.');
+                        }
                     } else {
                         Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat.');
                     }
-                    $API->disconnect();
 
+                    $API->disconnect();
                 } else {
                     Yii::$app->session->setFlash('error', 'Maaf akun <b>Wi-Fi</b> gagal dibuat. Terjadi kesalahan pada server Mikrotik. Silahkan hubungi admin.');
                 }

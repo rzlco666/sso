@@ -5,7 +5,7 @@
 $this->title = 'SSO';
 ?>
 <!-- home section -->
-<section class="home bg-light" id="home">
+<section class="home" id="home">
     <!-- start container -->
     <div class="container">
         <!-- start row -->
@@ -29,79 +29,6 @@ $this->title = 'SSO';
     <div class="background-line"></div>
 </section>
 <!-- end home section -->
-
-<!-- service section -->
-<section class="section service bg-light" id="service">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="title text-center mb-5">
-                    <h6 class="mb-0 fw-bold text-primary">What We Do?</h6>
-                    <h2 class="f-40">How can help you!</h2>
-                    <div class="border-phone">
-                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eos
-                            inventore omnis aliquid rerum alias molestias.</p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-between">
-            <div class="col-lg-4">
-                <div class="service-box text-center">
-                    <div class="service-icon p-4"
-                         style="background-image: url(<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/service/bomb.png') ?>); background-repeat: no-repeat; background-position: center;">
-                        <i class="mdi mdi-security text-gradiant f-30"></i>
-                    </div>
-
-                    <div class="service-content mt-4">
-                        <a href="">
-                            <h5 class="fw-bold">Fully Secured</h5>
-                        </a>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, adipiscing elit. Phasellus hendrerit.
-                            Pellentesque aliquet nibh nec urna.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 pt-4 pt-lg-0">
-                <div class="service-box text-center shadow">
-                    <div class="service-icon p-4"
-                         style="background-image: url(<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/service/bomb.png') ?>); background-repeat: no-repeat; background-position: center;">
-                        <i class="mdi mdi-lightbulb-on text-gradiant f-30"></i>
-                    </div>
-
-                    <div class="service-content mt-4">
-                        <a href="">
-                            <h5 class="fw-bold">Creative Idea</h5>
-                        </a>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, adipiscing elit. Phasellus hendrerit.
-                            Pellentesque aliquet nibh nec urna.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 pt-4 pt-lg-0">
-                <div class="service-box text-center">
-                    <div class="service-icon p-4"
-                         style="background-image: url(<?= Yii::$app->urlManagerFrontend->createUrl('/landing/images/service/bomb.png') ?>); background-repeat: no-repeat; background-position: center;">
-                        <i class="mdi mdi-google-nearby text-gradiant f-30"></i>
-                    </div>
-
-                    <div class="service-content mt-4">
-                        <a href="">
-                            <h5 class="fw-bold">Deasign & Brading</h5>
-                        </a>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, adipiscing elit. Phasellus hendrerit.
-                            Pellentesque aliquet nibh nec urna.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- end section -->
 
 
 <!-- start features -->
