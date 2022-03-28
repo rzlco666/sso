@@ -56,24 +56,14 @@ use yii\helpers\Url;
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="uil uil-user"></i> <?= Yii::$app->user->identity->username ?> | <?php switch (Yii::$app->user->identity->role) {
-                                case 1:
-                                    echo 'Mahasiswa';
-                                    break;
-                                case 2:
-                                    echo 'Dosen';
-                                    break;
-                                case 3:
-                                    echo 'Staff';
-                                    break;
-                            } ?>
+                            <i class="uil uil-user"></i> <?= Yii::$app->user->identity->username ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <?= Html::beginForm(['/site/logout'], 'post') ?>
                             <li>
                                 <?= Html::submitButton(
                                     'Logout',
-                                    ['class' => 'dropdown-item']
+                                    ['class' => 'dropdown-item', 'style' => 'color: white !important;']
                                 ) ?>
                             </li>
                             <?= Html::endForm() ?>

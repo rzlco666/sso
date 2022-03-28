@@ -47,6 +47,10 @@ use yii\web\View;
     <i class="uil uil-moon bx-spin mode-light"></i>
 </a>
 
+<!-- Style -->
+<?= $this->render('style') ?>
+<!-- /.Style -->
+
 <!-- Navbar -->
 <?= $this->render('navbar') ?>
 <!-- /.Navbar -->
